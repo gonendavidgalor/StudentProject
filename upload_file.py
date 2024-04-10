@@ -3,74 +3,97 @@ import openai # type: ignore
 
 from dotenv import load_dotenv # type: ignore
 
-load_dotenv()
+def get_openai_client():
+    load_dotenv()
 
-api_key = os.getenv("API_KEY")
+    api_key = os.getenv("API_KEY")
 
-if api_key is None:
-    raise ValueError("API_KEY not found in environment variables")
+    if api_key is None:
+        raise ValueError("API_KEY not found in environment variables")
 
-client = openai.OpenAI(api_key=api_key)
+    client = openai.OpenAI(api_key=api_key)
 
-file = client.files.create(
-  file=open("ps1.md", "rb"),
-  purpose='assistants'
-)
-
-thread = client.beta.threads.create(
-  messages=[
-    {
-      "role": "user",
-      "content": "I want to generate a question about this file. Can you help me with that",
-      "file_ids": [file.id]
-    }
-  ]
-)
-
-message = client.beta.threads.messages.create(
-  thread_id=thread.id,
-  role="user",
-  content="can you help me generate questions about this file?",
-  file_ids=[file.id]
-)
+    return client
 
 
-# Create an assistant using the file ID
-assistant = client.beta.assistants.create(
-  instructions=("You should generate a question about the file."),
-  model="gpt-4-turbo-preview",
-  tools=[{"type": "retrieval"}],
-  file_ids=[file.id]
-)
+def create_file(client, file_path):
+    file = client.files.create(
+        file=open(file_path, "rb"),
+        purpose='assistants'
+    )
+
+    return file
+
+def get_thread(client, file):
+    thread = client.beta.threads.create(
+      messages=[
+        {
+          "role": "user",
+          "content": "I want to generate a question about this file. Can you help me with that",
+          "file_ids": [file.id]
+        }
+      ]
+    )
+
+    return thread
 
 
-run = client.beta.threads.runs.create_and_poll(
-  thread_id=thread.id,
-  assistant_id=assistant.id,
-  instructions=("Generate one question about the content of the file and supply 4 answers to that question."
-    # "the question should start with __Question and end with Question__" 
-    # "and the answers should start with __Answer 1__, __Answer 2__, __Answer 3__, __Answer 4__ and end with __Answer__"
-    # "The correct answer should be added after and start with __Correct Answer__ and end with __Correct Answer__"),
-  ),
-)
+def get_a_question(client, thread, assistant):
+    run = client.beta.threads.runs.create_and_poll(
+      thread_id=thread.id,
+      assistant_id=assistant.id,
+      instructions = """Generate a multiple-choice question based on the content of the file. The question should be specific to the content and avoid generic or obvious answers. Format the output as follows:
 
-if run.status == 'completed': 
-  messages = client.beta.threads.messages.list(
-    thread_id=thread.id
+    Question: '...'
+    Answers:
+    1) '...'
+    2) '...'
+    3) '...'
+    4) '...'
+
+    Right answer: [number]
+
+    Ensure all answer choices are plausible and related to the file content, with only one correct answer. Exclude generic answers like 'Null' or 'All of the above'.
+    and don't add any other information in the output.
+    """
+
+      )
+
+
+    if run.status == 'completed': 
+      messages = client.beta.threads.messages.list(
+        thread_id=thread.id
+      )
+    
+    return messages
+
+
+def main():
+    client = get_openai_client()
+    file = create_file(client, "ps1.md")
+    thread = get_thread(client, file)
+    assistant = client.beta.assistants.create(
+    instructions=("You should generate a question about the file."),
+    model="gpt-4-turbo-preview",
+    tools=[{"type": "retrieval"}],
+    file_ids=[file.id]
   )
+  
+    messages = get_a_question(client, thread, assistant)
+
+  
 
 
-questions = []
+    questions = []
 
-# Iterate through the messages
-for message in messages.data:
-    if message.role == 'assistant':
-        content = message.content[0].text.value
-        print(content)
+    for message in messages.data:
+        if message.role == 'assistant':
+            content = message.content[0].text.value
+            print(content)
 
 
-print("Done")
-# print(message)
+    print("Done")
 
-# print(assistant['choices'][0]['message']['content'])
 
+if __name__ == "__main__":
+    main()
