@@ -1,6 +1,5 @@
 import os
 import openai # type: ignore
-
 from dotenv import load_dotenv # type: ignore
 
 def get_openai_client():
@@ -27,18 +26,18 @@ def create_file(client, file_path):
 
 def get_file_id():
     client = get_openai_client()
-    file_id = create_file(client, "ps1.md")
+    file_id = create_file(client, "utils\md_files\ps1.md")
     print(file_id)
 
     return file_id
 
-def main():
-    client = get_openai_client()
-    file_id = create_file(client, "ps1.md")
-    print(file_id)
+# def main():
+#     client = get_openai_client()
+#     file_id = create_file(client, "ps1.md")
+#     print(file_id)
 
-    return file_id
+#     return file_id
 
   
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()

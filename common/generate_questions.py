@@ -125,12 +125,13 @@ def make_infrustructure_for_questions(file_id):
     
     return client, thread, assistant
     
-def generate_questions():
-    file_id = 'file-IXD1QpgQiJoS9TmhIjOI94Pf'
+def generate_question():
+    file_id = 'file-MTHk7eYx23dLNhH5Fou3spCM'
     client, thread, assistant = make_infrustructure_for_questions(file_id)
     american_question = generate_american_question(client, thread, assistant)    
     print(american_question.question, american_question.answers, american_question.right_answer)
     print("Question generated successfully")
+    return american_question
 
 
 # def main():
@@ -138,13 +139,13 @@ def generate_questions():
 #     client, thread, assistant = make_infrustructure_for_questions(file_id)
 #     generate_american_questions(client, thread, assistant)
 
-def main():
-    file_id = 'file-HbOl7TwfrLvLwAzdi1ya0GZB'
-    client, thread, assistant = make_infrustructure_for_questions(file_id)
-    american_question = generate_american_question(client, thread, assistant)    
-    print(american_question.question, american_question.answers, american_question.right_answer)
-    print("Question generated successfully")        
+# def main():
+#     file_id = 'file-iDimO8buVyFOkHVbeXznetk7'
+#     client, thread, assistant = make_infrustructure_for_questions(file_id)
+#     american_question = generate_american_question(client, thread, assistant)    
+#     print(american_question.question, american_question.answers, american_question.right_answer)
+#     print("Question generated successfully")        
 
   
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()
