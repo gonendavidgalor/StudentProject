@@ -25,12 +25,12 @@ def create_file(client, file_path):
     return file.id
 
 
-# def get_file_id():
-#     client = get_openai_client()
-#     file_id = create_file(client, "ps1.md")
-#     print(file_id)
+def get_file_id():
+    client = get_openai_client()
+    file_id = create_file(client, "ps1.md")
+    print(file_id)
 
-#     return file_id
+    return file_id
 
 def main():
     client = get_openai_client()

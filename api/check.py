@@ -138,13 +138,13 @@ def generate_questions():
 #     client, thread, assistant = make_infrustructure_for_questions(file_id)
 #     generate_american_questions(client, thread, assistant)
 
-def main():
-    file_id = 'file-HbOl7TwfrLvLwAzdi1ya0GZB'
-    client, thread, assistant = make_infrustructure_for_questions(file_id)
-    american_question = generate_american_question(client, thread, assistant)    
-    print(american_question.question, american_question.answers, american_question.right_answer)
-    print("Question generated successfully")        
+# def main():
+#     file_id = 'file-HbOl7TwfrLvLwAzdi1ya0GZB'
+#     client, thread, assistant = make_infrustructure_for_questions(file_id)
+#     american_question = generate_american_question(client, thread, assistant)    
+#     print(american_question.question, american_question.answers, american_question.right_answer)
+#     print("Question generated successfully")        
 
   
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()
