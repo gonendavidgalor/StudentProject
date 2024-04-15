@@ -1,17 +1,31 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, File, Form, UploadFile
+from fastapi.middleware.cors import CORSMiddleware
 from common.upload_file import get_file_id
-# from check import generate_questions
-from common.generate_questions import generate_question
-# from check import get_file_id
-# from common.generate_questions import generate_questions
+from common.generate_questions import generate_a_question
+
 
 app = FastAPI()
 
-# TODO: Add a route to upload a file from UI
-@app.get("/upload_file")
-def upload_file():
-    return get_file_id()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000","http://127.0.0.1:3000"],  # The origins permitted to make requests, adjust as needed
+    allow_credentials=True,
+    allow_methods=["*"],  # Allows all methods
+    allow_headers=["*"],  # Allows all headers
+)
 
-@app.get("/generate_questions")
-def generate_questions():
-    return generate_question()
+@app.post("/upload_file")
+async def upload_file(file: UploadFile = File(...)):
+    return await get_file_id(file)
+
+@app.post("/generate_question")
+def generate_questions(file_id: str = Form(...)):
+    print(file_id)
+    return generate_a_question(file_id)
+
+# @app.get("/generate_question")
+# def generate_questions():
+#     file_id = 'file-SQztHzqhqbjZfs6wsNX4ux44'
+#     return generate_a_question(file_id)
+
+

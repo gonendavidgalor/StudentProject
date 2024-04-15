@@ -100,34 +100,35 @@ def generate_american_questions(client, thread, assistant):
            print(f"Try again")
 
 def generate_american_question(client, thread, assistant):
-    while True:
-      user_input = input("Do you want to generate a question? (y/n): ")
-      if user_input == 'n':
-          break
-      elif user_input == 'y':
-        try:
-          content = get_data_content(client, thread, assistant)
-          question, answers, right_answer = get_message_data(content)
-          return AmericanQuestionObject(question, answers, right_answer)
-          
-        except Exception as e:
-           print(f"Try again")
+  try:
+    content = get_data_content(client, thread, assistant)
+    question, answers, right_answer = get_message_data(content)
+    return AmericanQuestionObject(question, answers, right_answer)
+    
+  except Exception as e:
+    print(f"Try again")
+
 
 def make_infrustructure_for_questions(file_id):
     client = get_openai_client()
+    print("two")
     thread = get_thread(client, file_id)
+    print("three")
     assistant = client.beta.assistants.create(
     instructions=("You should generate a question about the file."),
     model="gpt-3.5-turbo",
     tools=[{"type": "retrieval"}],
     file_ids=[file_id]
   )
+    print("four")
     
     return client, thread, assistant
+    # return client, thread
     
-def generate_question():
-    file_id = 'file-MTHk7eYx23dLNhH5Fou3spCM'
-    client, thread, assistant = make_infrustructure_for_questions(file_id)
+def generate_a_question(file_id):
+    print("one")
+    file_id1 = "file-SQztHzqhqbjZfs6wsNX4ux44"
+    client, thread, assistant = make_infrustructure_for_questions(file_id1)
     american_question = generate_american_question(client, thread, assistant)    
     print(american_question.question, american_question.answers, american_question.right_answer)
     print("Question generated successfully")
@@ -139,9 +140,9 @@ def generate_question():
 #     client, thread, assistant = make_infrustructure_for_questions(file_id)
 #     generate_american_questions(client, thread, assistant)
 
-# def main():
-#     file_id = 'file-iDimO8buVyFOkHVbeXznetk7'
-#     client, thread, assistant = make_infrustructure_for_questions(file_id)
+# def main(file_id):
+    # file_id = 'file-4h7f0d0fSzrGLbcLD20m17Zr'
+#     client, thread, assistant = make_infrustructure_for_questions(str(file_id))
 #     american_question = generate_american_question(client, thread, assistant)    
 #     print(american_question.question, american_question.answers, american_question.right_answer)
 #     print("Question generated successfully")        

@@ -14,30 +14,53 @@ def get_openai_client():
 
     return client
 
-
-def create_file(client, file_path):
+def create_file(client, file_stream, file_name):
+    print("check")
+    print("File name", file_name)
+    print("check")
     file = client.files.create(
-        file=open(file_path, "rb"),
+        file=file_stream,
         purpose='assistants'
     )
-
     return file.id
 
 
-def get_file_id():
+async def get_file_id(file):
     client = get_openai_client()
-    file_id = create_file(client, "utils\md_files\ps1.md")
+    file_stream = await file.read()
+    file_id = create_file(client, file_stream, file.filename)
     print(file_id)
 
     return file_id
 
-# def main():
+# async def get_file_id(file):
 #     client = get_openai_client()
-#     file_id = create_file(client, "ps1.md")
+#     response = client.files.create(file=file.file.read(), purpose='answers')
+#     return {"file_id": response['id']}
+
+
+# def create_file(client, file_path):
+#     file = client.files.create(
+#         file=open(file_path, "rb"),
+#         purpose='assistants'
+#     )
+
+#     return file.id
+
+# def get_file_id():
+#     client = get_openai_client()
+#     file_id = create_file(client, "utils\md_files\ps1.md")
 #     print(file_id)
 
 #     return file_id
 
-  
-# if __name__ == "__main__":
-#     main()
+# def get_file_id(file_path):
+#     client = get_openai_client()
+#     file_id = create_file(client, file_path)
+#     print(file_id)
+
+#     return file_id
+
+
+
+
