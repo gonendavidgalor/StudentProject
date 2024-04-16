@@ -126,9 +126,7 @@ def make_infrustructure_for_questions(file_id):
     # return client, thread
     
 def generate_a_question(file_id):
-    print("one")
-    file_id1 = "file-SQztHzqhqbjZfs6wsNX4ux44"
-    client, thread, assistant = make_infrustructure_for_questions(file_id1)
+    client, thread, assistant = make_infrustructure_for_questions(file_id)
     american_question = generate_american_question(client, thread, assistant)    
     print(american_question.question, american_question.answers, american_question.right_answer)
     print("Question generated successfully")

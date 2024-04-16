@@ -38,21 +38,21 @@ async def get_file_id(file):
 #     response = client.files.create(file=file.file.read(), purpose='answers')
 #     return {"file_id": response['id']}
 
+# Temporary function
+def create_file(client, file_path):
+    file = client.files.create(
+        file=open(file_path, "rb"),
+        purpose='assistants'
+    )
 
-# def create_file(client, file_path):
-#     file = client.files.create(
-#         file=open(file_path, "rb"),
-#         purpose='assistants'
-#     )
+    return file.id
 
-#     return file.id
+def get_file_id():
+    client = get_openai_client()
+    file_id = create_file(client, "utils\md_files\ps1.md")
+    print(file_id)
 
-# def get_file_id():
-#     client = get_openai_client()
-#     file_id = create_file(client, "utils\md_files\ps1.md")
-#     print(file_id)
-
-#     return file_id
+    return file_id
 
 # def get_file_id(file_path):
 #     client = get_openai_client()
