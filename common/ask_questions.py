@@ -2,14 +2,12 @@ import os
 import openai # type: ignore
 
 from dotenv import load_dotenv # type: ignore
-# Check it
-# from utils.questions import AmericanQuestionObject
 
-class AmericanQuestionObject:
-    def __init__(self, question, answers, right_answer):
-        self.question = question
-        self.answers = answers
-        self.right_answer = right_answer
+class AnswerObject:
+    def __init__(self, content_type, answer):
+        self.content_type = content_type
+        self.answer = answer
+
 
 def get_openai_client():
     load_dotenv()
@@ -38,11 +36,16 @@ def get_thread(client, file_id):
     return thread
 
 
-def get_data_content(client, thread, assistant):
+def get_data_content(client, thread, assistant, question):
     run = client.beta.threads.runs.create_and_poll(
       thread_id=thread.id,
       assistant_id=assistant.id,
-      instructions = """Generate a solid answer for the asked question"""
+      instructions = f""" Based on the content of the document, answer this {question}. 
+      Format the output as follows:
+        Answer: ...
+      
+      don't add any other information in the output
+      """
       )
 
     if run.status == 'completed': 
@@ -56,31 +59,29 @@ def get_data_content(client, thread, assistant):
 
 
 def get_answer_data(content):
-    print(content)
-    parts = content.split("\n")
-    print(parts)
-  
-    return content
+    answers_array = []
+
+    # Check if the content starts with 'Answer: ```typescript'
+    if content.startswith("Answer: ```typescript"):
+        # Find the start and end of the TypeScript block
+        start = content.find("```typescript\n") + len("```typescript\n")
+        end = content.rfind("\n```")
+        if start != -1 and end != -1:
+            # Extract the code between these markers
+            code = content[start:end]
+            # Create an AnswerObject with the extracted code
+            answer_object = AnswerObject(content_type='typescript', answer=code)
+            answers_array.append(answer_object)
+
+    return answers_array
 
 
-# def generate_answer(client, thread, assistant):
-#     while True:
-#       user_input = input("Do you want to generate a question? (y/n): ")
-#       if user_input == 'n':
-#           break
-#       elif user_input == 'y':
-#         try:
-#           content = get_data_content(client, thread, assistant)
-#           question, answers, right_answer = get_answer_data(content)
-#           print(question, answers, right_answer)
-#         except Exception as e:
-#            print(f"Try again")
 
-def generate_answer(client, thread, assistant):
+def generate_answer(client, thread, assistant, question):
   try:
-    content = get_data_content(client, thread, assistant)
-    question, answers, right_answer = get_answer_data(content)
-    return AmericanQuestionObject(question, answers, right_answer)
+    content = get_data_content(client, thread, assistant, question)
+    answers = get_answer_data(content)
+    return answers
     
   except Exception as e:
     print(f"Try again")
@@ -94,7 +95,7 @@ def make_infrustructure_for_questions(file_id, question):
     print("three")
     assistant = client.beta.assistants.create(
     instructions=f"Based on the content of the uploaded file, answer the following question: {question}",
-    model="gpt-3.5-turbo",
+    model="gpt-4-turbo",
     tools=[{"type": "retrieval"}],
     file_ids=[file_id]
   )
@@ -105,6 +106,13 @@ def make_infrustructure_for_questions(file_id, question):
 def ask_a_question(file_id, question):
     print("one")
     client, thread, assistant = make_infrustructure_for_questions(file_id, question)
-    answer = generate_answer(client, thread, assistant)    
+    answer = generate_answer(client, thread, assistant, question)    
     print("Answer generated successfully")
     return answer
+
+
+def main():
+    # print(ask_a_question('file-SZMmhLtdAoPmNbSAiMY66nIG', 'Can you show me the part of code of typescript of forEach in the document?'))
+    print(get_answer_data('Answer: ```typescript\nlet movieIds = []\nmovieLists.forEach(category => category.videos.forEach(video => movieIds.push(video.id)));\nconsole.log(`movieIds=${movieIds}`); // ==> movieIds=70111470,654356453,65432445,675465\n```【7†source】'))
+if __name__ == "__main__":
+    main()
