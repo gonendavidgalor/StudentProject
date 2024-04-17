@@ -81,6 +81,8 @@ def generate_answer(client, thread, assistant, question):
   try:
     content = get_data_content(client, thread, assistant, question)
     answers = get_answer_data(content)
+    print(answers[0].answer)
+
     return answers
     
   except Exception as e:
@@ -103,16 +105,22 @@ def make_infrustructure_for_questions(file_id, question):
     
     return client, thread, assistant
     
+# def ask_a_question(file_id, question):
+#     print("one")
+#     client, thread, assistant = make_infrustructure_for_questions(file_id, question)
+#     answer = generate_answer(client, thread, assistant, question)    
+#     print("Answer generated successfully")
+#     print(answer)
+#     return answer
+
+
 def ask_a_question(file_id, question):
-    print("one")
-    client, thread, assistant = make_infrustructure_for_questions(file_id, question)
-    answer = generate_answer(client, thread, assistant, question)    
-    print("Answer generated successfully")
+    answer = get_answer_data('Answer: ```typescript\nlet movieIds = []\nmovieLists.forEach(category => category.videos.forEach(video => movieIds.push(video.id)));\nconsole.log(`movieIds=${movieIds}`); // ==> movieIds=70111470,654356453,65432445,675465\n```【7†source】')
+
     return answer
 
-
-def main():
-    # print(ask_a_question('file-SZMmhLtdAoPmNbSAiMY66nIG', 'Can you show me the part of code of typescript of forEach in the document?'))
-    print(get_answer_data('Answer: ```typescript\nlet movieIds = []\nmovieLists.forEach(category => category.videos.forEach(video => movieIds.push(video.id)));\nconsole.log(`movieIds=${movieIds}`); // ==> movieIds=70111470,654356453,65432445,675465\n```【7†source】'))
-if __name__ == "__main__":
-    main()
+# def main():
+#     # print(ask_a_question('file-SZMmhLtdAoPmNbSAiMY66nIG', 'Can you show me the part of code of typescript of forEach in the document?'))
+#     print(get_answer_data('Answer: ```typescript\nlet movieIds = []\nmovieLists.forEach(category => category.videos.forEach(video => movieIds.push(video.id)));\nconsole.log(`movieIds=${movieIds}`); // ==> movieIds=70111470,654356453,65432445,675465\n```【7†source】'))
+# if __name__ == "__main__":
+#     main()
