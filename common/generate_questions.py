@@ -6,10 +6,12 @@ from dotenv import load_dotenv # type: ignore
 # from utils.questions import AmericanQuestionObject
 
 class AmericanQuestionObject:
-    def __init__(self, question, answers, right_answer):
+    def __init__(self, question, answers, right_answer, assistant_id, thread_id):
         self.question = question
         self.answers = answers
         self.right_answer = right_answer
+        self.assistant_id = assistant_id
+        self.thread_id = thread_id
 
 def get_openai_client():
     load_dotenv()
@@ -38,10 +40,10 @@ def get_thread(client, file_id):
     return thread
 
 
-def get_data_content(client, thread, assistant):
+def get_data_content(client, thread_id, assistant_id):
     run = client.beta.threads.runs.create_and_poll(
-      thread_id=thread.id,
-      assistant_id=assistant.id,
+      thread_id=thread_id,
+      assistant_id=assistant_id,
       instructions = """Generate a multiple-choice question based on the content of the file. The question should be specific to the content and avoid generic or obvious answers. Format the output as follows:
 
     Question: ...
@@ -61,7 +63,7 @@ def get_data_content(client, thread, assistant):
 
     if run.status == 'completed': 
       messages = client.beta.threads.messages.list(
-        thread_id=thread.id
+        thread_id=thread_id
       )
     
     content = messages.data[0].content[0].text.value
@@ -86,31 +88,17 @@ def get_message_data(content):
     return question, answers, right_answer
 
 
-def generate_american_questions(client, thread, assistant):
-    while True:
-      user_input = input("Do you want to generate a question? (y/n): ")
-      if user_input == 'n':
-          break
-      elif user_input == 'y':
-        try:
-          content = get_data_content(client, thread, assistant)
-          question, answers, right_answer = get_message_data(content)
-          print(question, answers, right_answer)
-        except Exception as e:
-           print(f"Try again")
-
-def generate_american_question(client, thread, assistant):
+def generate_american_question(client, assistant_id, thread_id):
   try:
-    content = get_data_content(client, thread, assistant)
+    content = get_data_content(client, thread_id, assistant_id)
     question, answers, right_answer = get_message_data(content)
-    return AmericanQuestionObject(question, answers, right_answer)
+    return AmericanQuestionObject(question, answers, right_answer, assistant_id, thread_id)
     
   except Exception as e:
     print(f"Try again")
 
 
-def make_infrustructure_for_questions(file_id):
-    client = get_openai_client()
+def make_infrustructure_for_questions(file_id, client):
     print("two")
     thread = get_thread(client, file_id)
     print("three")
@@ -122,12 +110,17 @@ def make_infrustructure_for_questions(file_id):
   )
     print("four")
     
-    return client, thread, assistant
+    return thread, assistant
     # return client, thread
     
-def generate_a_question(file_id):
-    client, thread, assistant = make_infrustructure_for_questions(file_id)
-    american_question = generate_american_question(client, thread, assistant)    
+def generate_a_question(file_id, thread_id, assistant_id):
+    client = get_openai_client()
+    
+    if thread_id == None or assistant_id == None:
+      thread, assistant = make_infrustructure_for_questions(file_id, client)
+      american_question = generate_american_question(client, assistant.id, thread.id)    
+    else:
+      american_question = generate_american_question(client, assistant_id, thread_id)
     print(american_question.question, american_question.answers, american_question.right_answer)
     print("Question generated successfully")
     return american_question

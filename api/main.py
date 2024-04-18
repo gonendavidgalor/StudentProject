@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from common.upload_file import get_file_id
 from common.generate_questions import generate_a_question
 from common.ask_questions import ask_a_question
+from typing import Optional
 
 
 app = FastAPI()
@@ -27,9 +28,9 @@ async def upload_file(file: UploadFile = File(...)):
     return get_file_id()
 
 @app.post("/generate_question")
-def generate_questions(file_id: str = Form(...)):
+def generate_questions(file_id: str = Form(...), thread_id: Optional[str] = Form(None), assistant_id: Optional[str] = Form(None) ):
     print(file_id)
-    return generate_a_question(file_id)
+    return generate_a_question(file_id, thread_id, assistant_id)
 
 @app.get("/generate_question")
 def generate_questions():

@@ -116,7 +116,10 @@ def make_infrustructure_for_questions(file_id, question):
 
 def ask_a_question(file_id, question):
     answer = get_answer_data('Answer: ```typescript\nlet movieIds = []\nmovieLists.forEach(category => category.videos.forEach(video => movieIds.push(video.id)));\nconsole.log(`movieIds=${movieIds}`); // ==> movieIds=70111470,654356453,65432445,675465\n```【7†source】')
-
+    # answer[0].content_type = "text"
+    print(answer[0])
+    print(answer[0].answer)
+    print(answer[0].content_type)
     return answer
 
 # def main():
