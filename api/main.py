@@ -38,9 +38,13 @@ def generate_questions():
     return generate_a_question(file_id)
 
 
+# @app.post("/ask_question")
+# def ask_questions(file_id: str = Form(...), question: str = Form(...)):
+#     return ask_a_question(file_id, question)
+
 @app.post("/ask_question")
-def ask_questions(file_id: str = Form(...), question: str = Form(...)):
-    return ask_a_question(file_id, question)
+def ask_questions(file_id: str = Form(...), question: str = Form(...), thread_id: Optional[str] = Form(None), assistant_id: Optional[str] = Form(None) ):
+    return ask_a_question(file_id, question, thread_id, assistant_id)
 
 
 

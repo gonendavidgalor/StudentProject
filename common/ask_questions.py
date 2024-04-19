@@ -4,10 +4,10 @@ import openai # type: ignore
 from dotenv import load_dotenv # type: ignore
 
 class AnswerObject:
-    def __init__(self, content_type, answer):
-        self.content_type = content_type
-        self.answer = answer
-
+    def __init__(self, content, assistant_id, thread_id):
+        self.content = content
+        self.assistant_id = assistant_id
+        self.thread_id = thread_id
 
 def get_openai_client():
     load_dotenv()
@@ -36,10 +36,10 @@ def get_thread(client, file_id):
     return thread
 
 
-def get_data_content(client, thread, assistant, question):
+def get_data_content(client, thread_id, assistant_id, question):
     run = client.beta.threads.runs.create_and_poll(
-      thread_id=thread.id,
-      assistant_id=assistant.id,
+      thread_id=thread_id,
+      assistant_id=assistant_id,
       instructions = f""" Based on the content of the document, answer this {question}. 
       Format the output as follows:
         Answer: ...
@@ -50,7 +50,7 @@ def get_data_content(client, thread, assistant, question):
 
     if run.status == 'completed': 
       messages = client.beta.threads.messages.list(
-        thread_id=thread.id
+        thread_id=thread_id
       )
     
     content = messages.data[0].content[0].text.value
@@ -58,39 +58,19 @@ def get_data_content(client, thread, assistant, question):
     return content
 
 
-def get_answer_data(content):
-    answers_array = []
 
-    # Check if the content starts with 'Answer: ```typescript'
-    if content.startswith("Answer: ```typescript"):
-        # Find the start and end of the TypeScript block
-        start = content.find("```typescript\n") + len("```typescript\n")
-        end = content.rfind("\n```")
-        if start != -1 and end != -1:
-            # Extract the code between these markers
-            code = content[start:end]
-            # Create an AnswerObject with the extracted code
-            answer_object = AnswerObject(content_type='typescript', answer=code)
-            answers_array.append(answer_object)
-
-    return answers_array
-
-
-
-def generate_answer(client, thread, assistant, question):
+def generate_answer(client, thread_id, assistant_id, question):
   try:
-    content = get_data_content(client, thread, assistant, question)
-    answers = get_answer_data(content)
-    print(answers[0].answer)
+    content = get_data_content(client, thread_id, assistant_id, question)
+    print(type(content))
 
-    return answers
+    return AnswerObject(content, thread_id, assistant_id)
     
   except Exception as e:
     print(f"Try again")
 
 
-def make_infrustructure_for_questions(file_id, question):
-    client = get_openai_client()
+def make_infrustructure_for_questions(file_id, client, question):
     thread = get_thread(client, file_id)
     print("three")
     print(question)
@@ -103,24 +83,42 @@ def make_infrustructure_for_questions(file_id, question):
   )
     print("four")
     
-    return client, thread, assistant
+    return thread, assistant
     
+def ask_a_question(file_id, question, thread_id, assistant_id):
+    print("one")
+    client = get_openai_client()
+    if thread_id == None or assistant_id == None:
+      thread, assistant = make_infrustructure_for_questions(file_id, client, question)
+      answer_object = generate_answer(client, thread.id, assistant.id, question)
+    else: 
+      answer_object = generate_answer(client, thread_id, assistant_id, question)
+    if answer_object.content is not None:
+      answer_object.content = answer_object.content.replace("Answer: ", "", 1)  
+
+    print("Answer generated successfully")
+    print(answer_object)
+    return answer_object
+
 # def ask_a_question(file_id, question):
 #     print("one")
 #     client, thread, assistant = make_infrustructure_for_questions(file_id, question)
-#     answer = generate_answer(client, thread, assistant, question)    
+#     answer = generate_answer(client, thread, assistant, question)
+#     if answer is not None:
+#       answer = answer.replace("Answer: ", "", 1)  
+
 #     print("Answer generated successfully")
 #     print(answer)
 #     return answer
 
 
-def ask_a_question(file_id, question):
-    answer = get_answer_data('Answer: ```typescript\nlet movieIds = []\nmovieLists.forEach(category => category.videos.forEach(video => movieIds.push(video.id)));\nconsole.log(`movieIds=${movieIds}`); // ==> movieIds=70111470,654356453,65432445,675465\n```【7†source】')
-    # answer[0].content_type = "text"
-    print(answer[0])
-    print(answer[0].answer)
-    print(answer[0].content_type)
-    return answer
+# def ask_a_question(file_id, question):
+#     answer = get_answer_data('Answer: ```typescript\nlet movieIds = []\nmovieLists.forEach(category => category.videos.forEach(video => movieIds.push(video.id)));\nconsole.log(`movieIds=${movieIds}`); // ==> movieIds=70111470,654356453,65432445,675465\n```【7†source】')
+#     # answer[0].content_type = "text"
+#     print(answer[0])
+#     print(answer[0].answer)
+#     print(answer[0].content_type)
+#     return answer
 
 # def main():
 #     # print(ask_a_question('file-SZMmhLtdAoPmNbSAiMY66nIG', 'Can you show me the part of code of typescript of forEach in the document?'))
