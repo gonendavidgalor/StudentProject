@@ -6,8 +6,8 @@ from dotenv import load_dotenv # type: ignore
 class AnswerObject:
     def __init__(self, content, assistant_id, thread_id):
         self.content = content
-        self.assistant_id = assistant_id
         self.thread_id = thread_id
+        self.assistant_id = assistant_id
 
 def get_openai_client():
     load_dotenv()
@@ -63,8 +63,9 @@ def generate_answer(client, thread_id, assistant_id, question):
   try:
     content = get_data_content(client, thread_id, assistant_id, question)
     print(type(content))
-
-    return AnswerObject(content, thread_id, assistant_id)
+    print(thread_id, "thread_id")
+    print(assistant_id, "assistant_id")
+    return AnswerObject(content, thread_id=thread_id, assistant_id=assistant_id)
     
   except Exception as e:
     print(f"Try again")
@@ -87,17 +88,24 @@ def make_infrustructure_for_questions(file_id, client, question):
     
 def ask_a_question(file_id, question, thread_id, assistant_id):
     print("one")
+    print(thread_id, "thread_id")
+    print(assistant_id, "assistant_id")
     client = get_openai_client()
     if thread_id == None or assistant_id == None:
       thread, assistant = make_infrustructure_for_questions(file_id, client, question)
       answer_object = generate_answer(client, thread.id, assistant.id, question)
     else: 
+      print("hey")
+      print(thread_id, "thread_id3")
+      print(assistant_id, "assistant_id3")
       answer_object = generate_answer(client, thread_id, assistant_id, question)
+    
+    print(answer_object.thread_id, "thread_id2")
     if answer_object.content is not None:
       answer_object.content = answer_object.content.replace("Answer: ", "", 1)  
 
     print("Answer generated successfully")
-    print(answer_object)
+    print(answer_object.content)
     return answer_object
 
 # def ask_a_question(file_id, question):

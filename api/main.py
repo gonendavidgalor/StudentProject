@@ -44,6 +44,8 @@ def generate_questions():
 
 @app.post("/ask_question")
 def ask_questions(file_id: str = Form(...), question: str = Form(...), thread_id: Optional[str] = Form(None), assistant_id: Optional[str] = Form(None) ):
+    print(thread_id, "thread_id5")
+    print(assistant_id, "assistant_id5")
     return ask_a_question(file_id, question, thread_id, assistant_id)
 
 
