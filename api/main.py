@@ -1,9 +1,15 @@
 from fastapi import FastAPI, File, Form, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
+from common.load_quiz import list_quiz_files
 from common.upload_file import get_file_id
 from common.generate_questions import generate_a_question
 from common.ask_questions import ask_a_question
 from typing import Optional
+from common.add_file_to_db import add_file
+from common.load_files import load_content
+from utils.shared_objects import AmericanQuestionObject, AmericanQuestionObjectWithFileName
+from common.add_quiz_question import save_quiz_question
+
 
 
 app = FastAPI()
@@ -47,6 +53,29 @@ def ask_questions(file_id: str = Form(...), question: str = Form(...), thread_id
     print(thread_id, "thread_id5")
     print(assistant_id, "assistant_id5")
     return ask_a_question(file_id, question, thread_id, assistant_id)
+
+
+@app.post("/save_file")
+async def save_file(file: UploadFile = File(...)):
+    await add_file(file)
+
+@app.get("/load_files")
+async def load_files():
+    print("wow")
+    return load_content
+
+@app.post("/add_question_to_quiz")
+async def add_question_to_quiz(american_question_object: AmericanQuestionObjectWithFileName):
+    print(american_question_object.answers, american_question_object.question)
+    return save_quiz_question(american_question_object)
+
+
+@app.get("/load_quiz")
+async def load_quiz():
+    print("hey")
+    list_quizes = list_quiz_files("db/quiz_ps")
+    print(list_quizes)
+    return list_quizes
 
 
 

@@ -1,0 +1,12 @@
+[
+    {
+        "question": "What is the purpose of JSON in JavaScript?",
+        "answers": [
+            "To execute JavaScript code on the server side",
+            "To define functions for handling user input",
+            "To handle browser events and interactions",
+            "To serialize JavaScript compound values into strings and vice-versa"
+        ],
+        "right_answer": 4
+    }
+]

@@ -1,0 +1,12 @@
+[
+    {
+        "question": "In JavaScript, which types of values can be encoded into JSON strings?",
+        "answers": [
+            "Strings, Booleans, and Objects",
+            "Numbers, Arrays, and Null",
+            "Functions, Undefined, and Maps",
+            "Strings, Numbers, Booleans, Null, Arrays, and Maps"
+        ],
+        "right_answer": 4
+    }
+]
