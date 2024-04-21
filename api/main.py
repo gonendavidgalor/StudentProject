@@ -1,6 +1,7 @@
 from fastapi import FastAPI, File, Form, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from common.load_quiz import list_quiz_files
+from common.load_specific_quiz import load_american_questions_from_quiz
 from common.upload_file import get_file_id
 from common.generate_questions import generate_a_question
 from common.ask_questions import ask_a_question
@@ -23,14 +24,16 @@ app.add_middleware(
 )
 
 # Just basic for checking the UI
-@app.get("/upload_file")
-def upload_file():
-    return get_file_id()
+# @app.get("/upload_file")
+# def upload_file():
+#     return get_file_id()
 
-# Should be the real one
+
+# TODO: Should be the real one
 @app.post("/upload_file")
+# async def upload_file(file: UploadFile = File(...)):
+#     return await get_file_id(file)
 async def upload_file(file: UploadFile = File(...)):
-    # return await get_file_id(file)
     return get_file_id()
 
 @app.post("/generate_question")
@@ -70,12 +73,20 @@ async def add_question_to_quiz(american_question_object: AmericanQuestionObjectW
     return save_quiz_question(american_question_object)
 
 
-@app.get("/load_quiz")
+@app.get("/load_quiz_names")
 async def load_quiz():
     print("hey")
     list_quizes = list_quiz_files("db/quiz_ps")
     print(list_quizes)
     return list_quizes
+
+
+@app.post("/load_specific_quiz")
+async def load_specific_quiz(file_name: str = Form(...)):
+    print(file_name)
+    american_questions = load_american_questions_from_quiz(file_name)
+    print(american_questions)
+    return american_questions 
 
 
 

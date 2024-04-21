@@ -14,9 +14,8 @@ def get_openai_client():
 
     return client
 
-def create_file(client, file_stream, file_name):
+def create_file(client, file_stream):
     print("check")
-    print("File name", file_name)
     print("check")
     file = client.files.create(
         file=file_stream,
@@ -24,19 +23,14 @@ def create_file(client, file_stream, file_name):
     )
     return file.id
 
-
-async def get_file_id(file):
-    client = get_openai_client()
-    file_stream = await file.read()
-    file_id = create_file(client, file_stream, file.filename)
-    print(file_id)
-
-    return file_id
-
+# TODO: should be the real one, need to understand why it is not recognizing the .md suffix
 # async def get_file_id(file):
 #     client = get_openai_client()
-#     response = client.files.create(file=file.file.read(), purpose='answers')
-#     return {"file_id": response['id']}
+#     file_stream = await file.read()
+#     file_id = create_file(client, file_stream)
+#     print(file_id)
+
+#     return file_id
 
 # Temporary function
 def create_file(client, file_path):
@@ -54,7 +48,7 @@ def get_file_id():
 
     return file_id
 
-# def get_file_id(file_path):
+# def get_file_id(file):
 #     client = get_openai_client()
 #     file_id = create_file(client, file_path)
 #     print(file_id)

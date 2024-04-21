@@ -1,12 +1,32 @@
 [
     {
-        "question": "What is the purpose of JSON in JavaScript?",
+        "question": "What compound type in JavaScript can be both homogeneous and heterogeneous?",
         "answers": [
-            "To execute JavaScript code on the server side",
-            "To define functions for handling user input",
-            "To handle browser events and interactions",
-            "To serialize JavaScript compound values into strings and vice-versa"
+            "Arrays",
+            "Maps",
+            "Strings",
+            "Booleans"
         ],
-        "right_answer": 4
+        "right_answer": 1
+    },
+    {
+        "question": "Which method is used in JavaScript to map a value to a string when working with JSON?",
+        "answers": [
+            "`JSON.stringify()`",
+            "`JSON.parse()`",
+            "`toString()`",
+            "`stringifyJSON()`"
+        ],
+        "right_answer": 1
+    },
+    {
+        "question": "What type of values can be encoded into a JSON string according to the content of the file?",
+        "answers": [
+            "String, Number, Boolean, Null",
+            "Object, Array, Undefined, Function",
+            "Number, Boolean, Object, Array",
+            "String, Number, Map, Array"
+        ],
+        "right_answer": 1
     }
 ]

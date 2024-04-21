@@ -19,7 +19,7 @@ def save_quiz_question(american_question_object):
         file_base_name = american_question_object.file_name
 
     # Construct the full path for the file with .json extension
-    file_json_path = f'db/quiz_{file_base_name}.json'
+    file_json_path = f'db/quiz_ps/quiz_{file_base_name}.json'
 
     # Load existing data from the file, if it exists, or initialize an empty list
     try:
