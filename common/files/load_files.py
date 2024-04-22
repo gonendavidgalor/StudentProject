@@ -4,7 +4,7 @@ import json
 
 app = FastAPI()
 
-FILES_JSON_PATH = 'files.json'
+FILES_JSON_PATH = 'db/files.json'
 
 async def load_content():
     try:
