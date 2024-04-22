@@ -28,5 +28,45 @@
             "String, Number, Map, Array"
         ],
         "right_answer": 1
+    },
+    {
+        "question": "In TypeScript, what are the two basic compound types introduced by Javascript?",
+        "answers": [
+            "Tuples and Sets",
+            "Arrays and Maps",
+            "Functions and Objects",
+            "Strings and Booleans"
+        ],
+        "right_answer": 2
+    },
+    {
+        "question": "Which method from the JSON interface maps a string written according to the JSON syntax to a values?",
+        "answers": [
+            "JSON.stringify(o)",
+            "JSON.parse(s)",
+            "JSON.stringify()",
+            "JSON.parse()"
+        ],
+        "right_answer": 2
+    },
+    {
+        "question": "Which of the following statements about JSON values is false?",
+        "answers": [
+            "JSON strings can include undefined values and functions.",
+            "JSON values can only be strings, numbers, and arrays.",
+            "JSON values can consist of maps with non-string keys and values.",
+            "JSON strings can be serialized with the `JSON.parse()` method."
+        ],
+        "right_answer": 2
+    },
+    {
+        "question": "What method can be used to check if a variable is an Array in Java?",
+        "answers": [
+            "isArray()",
+            "isArrayOf()",
+            "checkArray()",
+            "instanceof Array"
+        ],
+        "right_answer": 1
     }
 ]

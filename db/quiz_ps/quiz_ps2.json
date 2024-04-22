@@ -8,5 +8,65 @@
             "Strings, Numbers, Booleans, Null, Arrays, and Maps"
         ],
         "right_answer": 4
+    },
+    {
+        "question": "What are the two basic compound types introduced in JavaScript according to the content of the document?",
+        "answers": [
+            "Strings",
+            "Maps",
+            "Numbers and Objects",
+            "Functions and Null"
+        ],
+        "right_answer": 2
+    },
+    {
+        "question": "What method in JavaScript is used to map a value to a string according to the JSON interface?",
+        "answers": [
+            "`JSON.valueToString()`",
+            "`JSON.stringify()`",
+            "`JSON.parse()`",
+            "`JSON.stringMap()`"
+        ],
+        "right_answer": 2
+    },
+    {
+        "question": "In JavaScript, what is a compound type that can contain values of different data types within the same?",
+        "answers": [
+            "Object",
+            "Boolean",
+            "Map",
+            "Array"
+        ],
+        "right_answer": 4
+    },
+    {
+        "question": "What are two basic compound types introduced in JavaScript according to the content of the provided document?",
+        "answers": [
+            "Strings and Booleans",
+            "Arrays",
+            "Numbers and Objects",
+            "Functions and Null"
+        ],
+        "right_answer": 2
+    },
+    {
+        "question": "In the context of working with complex JSON values, what TypeScript construct can be used to name map compound types for better readability and documentation?",
+        "answers": [
+            "Nested structures",
+            "Type alias",
+            "Class extension",
+            "Variable assignment"
+        ],
+        "right_answer": 2
+    },
+    {
+        "question": "In the context of working with complex JSON values, what TypeScript construct can be used to name map compound types for better readability and documentation?",
+        "answers": [
+            "Nested structures",
+            "Type alias",
+            "Class",
+            "Variable"
+        ],
+        "right_answer": 2
     }
 ]

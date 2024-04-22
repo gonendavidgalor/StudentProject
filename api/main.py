@@ -1,15 +1,15 @@
 from fastapi import FastAPI, File, Form, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
-from common.load_quiz import list_quiz_files
-from common.load_specific_quiz import load_american_questions_from_quiz
-from common.upload_file import get_file_id
-from common.generate_questions import generate_a_question
-from common.ask_questions import ask_a_question
+from common.questions.load_quiz import list_quiz_files
+from common.questions.load_specific_quiz import load_american_questions_from_quiz
+from common.files.upload_file import get_file_id
+from common.questions.generate_questions import generate_a_question
+from common.questions.ask_questions import ask_a_question
 from typing import Optional
-from common.add_file_to_db import add_file
-from common.load_files import load_content
-from utils.shared_objects import AmericanQuestionObject, AmericanQuestionObjectWithFileName
-from common.add_quiz_question import save_quiz_question
+from common.files.add_file_to_db import add_file
+from common.files.load_files import load_content
+from utils.shared_objects import AmericanQuestionObjectWithFileName
+from common.questions.add_quiz_question import save_quiz_question
 
 
 
@@ -85,7 +85,7 @@ async def load_quiz():
 async def load_specific_quiz(file_name: str = Form(...)):
     print(file_name)
     american_questions = load_american_questions_from_quiz(file_name)
-    print(american_questions)
+    print(american_questions    )
     return american_questions 
 
 

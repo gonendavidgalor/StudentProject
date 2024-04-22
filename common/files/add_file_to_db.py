@@ -1,4 +1,4 @@
-from fastapi import FastAPI, File, UploadFile
+from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 import json
 from pathlib import Path
@@ -7,22 +7,15 @@ app = FastAPI()
 
 FILES_JSON_PATH = 'db\\files.json'
 Path(FILES_JSON_PATH).touch(exist_ok=True)
-print("hey")
+
 async def add_file(file):
-    print("hey1")
-    print(file)
-    print("hey2")
     if file:
-        content = await file.read()  # Read file content as bytes
-        print("hey3")
+        content = await file.read()
         file_details = {
             'name': file.filename,
-            'content': content.decode('utf-8')  # Assuming file content is utf-8 text
+            'content': content.decode('utf-8')
         }
 
-        # Save file details to JSON
-        print(file_details)
-        print("right!")
         if not is_file_exist(file.filename):
             save_file_details(file_details)
             return JSONResponse(status_code=200, content={"message": "File uploaded successfully", "filename": file.filename})
@@ -45,7 +38,6 @@ def is_file_exist(filename):
     with open(FILES_JSON_PATH, 'r+') as f:
         files = json.load(f)
         for file in files:
-            print(file['name'])
             if file['name'] == filename:
                 return True
     return False
