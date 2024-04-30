@@ -16,6 +16,8 @@ async def add_file(file):
             'content': content.decode('utf-8')
         }
 
+        print(content)
+
         if not is_file_exist(file.filename):
             save_file_details(file_details)
             return JSONResponse(status_code=200, content={"message": "File uploaded successfully", "filename": file.filename})

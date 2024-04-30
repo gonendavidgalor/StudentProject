@@ -68,5 +68,55 @@
             "instanceof Array"
         ],
         "right_answer": 1
+    },
+    {
+        "question": "What is the purpose of JSON.stringify() and JSON.parse() methods in JavaScript, as mentioned in the provided content?",
+        "answers": [
+            "JSON.stringify() is used to parse a JSON string, while JSON.parse() is used to convert a JSON object into",
+            "JSON.stringify() is used to convert a JSON object into a string, while JSON.parse() is used to parse a JSON string.",
+            "JSON.stringify() and JSON.parse() both serve the same purpose of converting JSON objects into",
+            "JSON.stringify() and JSON.parse() are not used with JavaScript object serialization."
+        ],
+        "right_answer": 2
+    },
+    {
+        "question": "What does the JSON.stringify method do in JavaScript?",
+        "answers": [
+            "Parses a JSON string into a JavaScript",
+            "Converts a JavaScript object into a JSON string",
+            "Checks if a value is a valid JSON data type",
+            "Retrieves the keys of a JavaScript object"
+        ],
+        "right_answer": 2
+    },
+    {
+        "question": "According to the file, what are the valid types of values that can be encoded into JSON strings?",
+        "answers": [
+            "Strings, numbers, booleans, and arrays",
+            "Strings, numbers, booleans, null, maps, and arrays",
+            "Strings, numbers, and objects",
+            "Strings, numbers, booleans, null, and functions"
+        ],
+        "right_answer": 2
+    },
+    {
+        "question": "How are arrays and maps referred to as in JavaScript, based on the information provided in the file?",
+        "answers": [
+            "Primitive types",
+            "Atomic types",
+            "Object types",
+            "Derived"
+        ],
+        "right_answer": 3
+    },
+    {
+        "question": "Which values can be encoded into JSON strings as described in the document?",
+        "answers": [
+            "Arrays and maps",
+            "Null and functions",
+            "Booleans and undefined",
+            "Functions and undefined"
+        ],
+        "right_answer": 1
     }
 ]

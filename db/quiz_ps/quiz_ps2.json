@@ -68,5 +68,45 @@
             "Variable"
         ],
         "right_answer": 2
+    },
+    {
+        "question": "Which method in Javascript is used to map a value to a string when serializing JavaScript compound values into strings in JSON format?",
+        "answers": [
+            "`JSON.stringify()`",
+            "`JSON.parse()`",
+            "`JSON.stringifyify()`",
+            "`JSON.convert()`"
+        ],
+        "right_answer": 1
+    },
+    {
+        "question": "What defines the compatibility between the type of a variable and the type of the value it stores in JavaScript, as per the content of the file?",
+        "answers": [
+            "The size of the variable and value",
+            "The declared group defining the variable type",
+            "The operations that can be performed on the variable",
+            "The data classification of the variable and value"
+        ],
+        "right_answer": 2
+    },
+    {
+        "question": "What is the purpose of JSON.stringify() and JSON.parse() in JavaScript?",
+        "answers": [
+            "JSON.stringify() is used to map a JSON string to a value, while JSON.parse() is used to map a value to a string.",
+            "JSON.stringify() and JSON.parse() both map a value to a JSON string.",
+            "JSON.stringify() maps a value to a string, and JSON.parse() maps a string written in JSON syntax to a value.",
+            "JSON.stringify() maps a value to a JSON string, and JSON.parse() maps a JSON string to a value."
+        ],
+        "right_answer": 3
+    },
+    {
+        "question": "Which type of compound value in JavaScript is referred to as an \"object\" type, distinct from atomic types like number and string?",
+        "answers": [
+            "Structs",
+            "Sets",
+            "Tuples",
+            "Arrays"
+        ],
+        "right_answer": 4
     }
 ]
