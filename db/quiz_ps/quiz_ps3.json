@@ -1,0 +1,12 @@
+[
+    {
+        "question": "What are the two basic compound types introduced in Javascript, as described in the document?",
+        "answers": [
+            "Strings and Booleans",
+            "Arrays and Objects",
+            "Numbers and Functions",
+            "Maps and Sets"
+        ],
+        "right_answer": 2
+    }
+]
