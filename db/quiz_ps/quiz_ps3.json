@@ -1,11 +1,23 @@
 [
     {
-        "question": "What are the two basic compound types introduced in Javascript, as described in the document?",
+        "id": 3,
+        "question": "What are the basic compound types introduced in JavaScript according to the provided content?",
         "answers": [
             "Strings and Booleans",
-            "Arrays and Objects",
-            "Numbers and Functions",
-            "Maps and Sets"
+            "Arrays and Maps",
+            "Numbers and Objects",
+            "Functions and Undefined"
+        ],
+        "right_answer": 2
+    },
+    {
+        "id": 4,
+        "question": "Which basic compound types are introduced in JavaScript according to the content of the file?",
+        "answers": [
+            "Strings and Booleans",
+            "Arrays and Maps",
+            "Objects and Functions",
+            "Numbers and Null"
         ],
         "right_answer": 2
     }

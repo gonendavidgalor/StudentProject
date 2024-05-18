@@ -3,6 +3,7 @@ from pathlib import Path
 
 def save_quiz_question(american_question_object):
     question_dict = {
+        "id": american_question_object.id,
         "question": american_question_object.question,
         "answers": american_question_object.answers,
         "right_answer": american_question_object.right_answer,

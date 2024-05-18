@@ -4,6 +4,7 @@ import json
 from typing import List
 
 class QuizQuestion(BaseModel):
+    id: int
     question: str
     answers: List[str]
     right_answer: int

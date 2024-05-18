@@ -1,16 +1,14 @@
 import json
 from fastapi import FastAPI, File, Form, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse
-from pydantic import BaseModel
 from common.questions.load_quiz import list_quiz_files
 from common.questions.load_specific_quiz import load_american_questions_from_quiz
 from common.files.upload_file import get_file_id
+from common.files.load_files import load_content
 from common.questions.generate_questions import generate_a_question
 from common.questions.ask_questions import ask_a_question
 from typing import Optional
 from common.files.add_file_to_db import add_file
-from common.files.load_files import load_content
 from utils.shared_objects import AmericanQuestionObjectWithFileName
 from common.questions.add_quiz_question import save_quiz_question
 
@@ -66,33 +64,14 @@ async def save_file(file: UploadFile = File(...)):
     await add_file(file)
 
 
-class FileDetails(BaseModel):
-    name: str
-    content: str
-
 # Try to make it look better
 @app.get("/load_files")
 async def load_files():
-    print("wow")
-    FILES_JSON_PATH = 'db/files.json'
-
-    try:
-        print("check1")
-
-        with open(FILES_JSON_PATH, 'r') as f:
-            print("check")
-            files = json.load(f)
-            quiz_questions = [FileDetails(**data) for data in files]
-
-
-    except FileNotFoundError:
-        return JSONResponse(status_code=404, content={"message": "File not found"})
+    return await load_content()
     
-    return quiz_questions
 
 @app.post("/add_question_to_quiz")
 async def add_question_to_quiz(american_question_object: AmericanQuestionObjectWithFileName):
-    print("hey")
     print(american_question_object.answers, american_question_object.question)
     return save_quiz_question(american_question_object)
 

@@ -1,112 +1,13 @@
 [
     {
-        "question": "In JavaScript, which types of values can be encoded into JSON strings?",
+        "id": 2,
+        "question": "Which method in JavaScript is used to map a value to a string when serializing it into JSON?",
         "answers": [
-            "Strings, Booleans, and Objects",
-            "Numbers, Arrays, and Null",
-            "Functions, Undefined, and Maps",
-            "Strings, Numbers, Booleans, Null, Arrays, and Maps"
-        ],
-        "right_answer": 4
-    },
-    {
-        "question": "What are the two basic compound types introduced in JavaScript according to the content of the document?",
-        "answers": [
-            "Strings",
-            "Maps",
-            "Numbers and Objects",
-            "Functions and Null"
-        ],
-        "right_answer": 2
-    },
-    {
-        "question": "What method in JavaScript is used to map a value to a string according to the JSON interface?",
-        "answers": [
-            "`JSON.valueToString()`",
-            "`JSON.stringify()`",
-            "`JSON.parse()`",
-            "`JSON.stringMap()`"
-        ],
-        "right_answer": 2
-    },
-    {
-        "question": "In JavaScript, what is a compound type that can contain values of different data types within the same?",
-        "answers": [
-            "Object",
-            "Boolean",
-            "Map",
-            "Array"
-        ],
-        "right_answer": 4
-    },
-    {
-        "question": "What are two basic compound types introduced in JavaScript according to the content of the provided document?",
-        "answers": [
-            "Strings and Booleans",
-            "Arrays",
-            "Numbers and Objects",
-            "Functions and Null"
-        ],
-        "right_answer": 2
-    },
-    {
-        "question": "In the context of working with complex JSON values, what TypeScript construct can be used to name map compound types for better readability and documentation?",
-        "answers": [
-            "Nested structures",
-            "Type alias",
-            "Class extension",
-            "Variable assignment"
-        ],
-        "right_answer": 2
-    },
-    {
-        "question": "In the context of working with complex JSON values, what TypeScript construct can be used to name map compound types for better readability and documentation?",
-        "answers": [
-            "Nested structures",
-            "Type alias",
-            "Class",
-            "Variable"
-        ],
-        "right_answer": 2
-    },
-    {
-        "question": "Which method in Javascript is used to map a value to a string when serializing JavaScript compound values into strings in JSON format?",
-        "answers": [
-            "`JSON.stringify()`",
-            "`JSON.parse()`",
-            "`JSON.stringifyify()`",
-            "`JSON.convert()`"
-        ],
-        "right_answer": 1
-    },
-    {
-        "question": "What defines the compatibility between the type of a variable and the type of the value it stores in JavaScript, as per the content of the file?",
-        "answers": [
-            "The size of the variable and value",
-            "The declared group defining the variable type",
-            "The operations that can be performed on the variable",
-            "The data classification of the variable and value"
-        ],
-        "right_answer": 2
-    },
-    {
-        "question": "What is the purpose of JSON.stringify() and JSON.parse() in JavaScript?",
-        "answers": [
-            "JSON.stringify() is used to map a JSON string to a value, while JSON.parse() is used to map a value to a string.",
-            "JSON.stringify() and JSON.parse() both map a value to a JSON string.",
-            "JSON.stringify() maps a value to a string, and JSON.parse() maps a string written in JSON syntax to a value.",
-            "JSON.stringify() maps a value to a JSON string, and JSON.parse() maps a JSON string to a value."
+            "`JSON.encode(o)`",
+            "`JSON.valueToString(o)`",
+            "`JSON.stringify(o)`",
+            "`JSON.parse(o)`"
         ],
         "right_answer": 3
-    },
-    {
-        "question": "Which type of compound value in JavaScript is referred to as an \"object\" type, distinct from atomic types like number and string?",
-        "answers": [
-            "Structs",
-            "Sets",
-            "Tuples",
-            "Arrays"
-        ],
-        "right_answer": 4
     }
 ]

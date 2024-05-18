@@ -1,122 +1,13 @@
 [
     {
-        "question": "What compound type in JavaScript can be both homogeneous and heterogeneous?",
+        "id": 1,
+        "question": "What is a distinguishing feature of the JavaScript compound type called Maps?",
         "answers": [
-            "Arrays",
-            "Maps",
-            "Strings",
-            "Booleans"
-        ],
-        "right_answer": 1
-    },
-    {
-        "question": "Which method is used in JavaScript to map a value to a string when working with JSON?",
-        "answers": [
-            "`JSON.stringify()`",
-            "`JSON.parse()`",
-            "`toString()`",
-            "`stringifyJSON()`"
-        ],
-        "right_answer": 1
-    },
-    {
-        "question": "What type of values can be encoded into a JSON string according to the content of the file?",
-        "answers": [
-            "String, Number, Boolean, Null",
-            "Object, Array, Undefined, Function",
-            "Number, Boolean, Object, Array",
-            "String, Number, Map, Array"
-        ],
-        "right_answer": 1
-    },
-    {
-        "question": "In TypeScript, what are the two basic compound types introduced by Javascript?",
-        "answers": [
-            "Tuples and Sets",
-            "Arrays and Maps",
-            "Functions and Objects",
-            "Strings and Booleans"
-        ],
-        "right_answer": 2
-    },
-    {
-        "question": "Which method from the JSON interface maps a string written according to the JSON syntax to a values?",
-        "answers": [
-            "JSON.stringify(o)",
-            "JSON.parse(s)",
-            "JSON.stringify()",
-            "JSON.parse()"
-        ],
-        "right_answer": 2
-    },
-    {
-        "question": "Which of the following statements about JSON values is false?",
-        "answers": [
-            "JSON strings can include undefined values and functions.",
-            "JSON values can only be strings, numbers, and arrays.",
-            "JSON values can consist of maps with non-string keys and values.",
-            "JSON strings can be serialized with the `JSON.parse()` method."
-        ],
-        "right_answer": 2
-    },
-    {
-        "question": "What method can be used to check if a variable is an Array in Java?",
-        "answers": [
-            "isArray()",
-            "isArrayOf()",
-            "checkArray()",
-            "instanceof Array"
-        ],
-        "right_answer": 1
-    },
-    {
-        "question": "What is the purpose of JSON.stringify() and JSON.parse() methods in JavaScript, as mentioned in the provided content?",
-        "answers": [
-            "JSON.stringify() is used to parse a JSON string, while JSON.parse() is used to convert a JSON object into",
-            "JSON.stringify() is used to convert a JSON object into a string, while JSON.parse() is used to parse a JSON string.",
-            "JSON.stringify() and JSON.parse() both serve the same purpose of converting JSON objects into",
-            "JSON.stringify() and JSON.parse() are not used with JavaScript object serialization."
-        ],
-        "right_answer": 2
-    },
-    {
-        "question": "What does the JSON.stringify method do in JavaScript?",
-        "answers": [
-            "Parses a JSON string into a JavaScript",
-            "Converts a JavaScript object into a JSON string",
-            "Checks if a value is a valid JSON data type",
-            "Retrieves the keys of a JavaScript object"
-        ],
-        "right_answer": 2
-    },
-    {
-        "question": "According to the file, what are the valid types of values that can be encoded into JSON strings?",
-        "answers": [
-            "Strings, numbers, booleans, and arrays",
-            "Strings, numbers, booleans, null, maps, and arrays",
-            "Strings, numbers, and objects",
-            "Strings, numbers, booleans, null, and functions"
-        ],
-        "right_answer": 2
-    },
-    {
-        "question": "How are arrays and maps referred to as in JavaScript, based on the information provided in the file?",
-        "answers": [
-            "Primitive types",
-            "Atomic types",
-            "Object types",
-            "Derived"
+            "Maps allow for the definition of homogenous compound values.",
+            "Maps can only be accessed using the keys 'a' and 'b'.",
+            "Maps can have keys that are strings and values that are of any data type.",
+            "Maps must contain a single data type as their values."
         ],
         "right_answer": 3
-    },
-    {
-        "question": "Which values can be encoded into JSON strings as described in the document?",
-        "answers": [
-            "Arrays and maps",
-            "Null and functions",
-            "Booleans and undefined",
-            "Functions and undefined"
-        ],
-        "right_answer": 1
     }
 ]
