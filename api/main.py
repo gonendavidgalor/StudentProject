@@ -11,6 +11,7 @@ from typing import Optional
 from common.files.add_file_to_db import add_file
 from utils.shared_objects import AmericanQuestionObjectWithFileName
 from common.questions.add_quiz_question import save_quiz_question
+from common.questions.delete_question import delete_question
 
 
 
@@ -72,7 +73,6 @@ async def load_files():
 
 @app.post("/add_question_to_quiz")
 async def add_question_to_quiz(american_question_object: AmericanQuestionObjectWithFileName):
-    print(american_question_object.answers, american_question_object.question)
     return save_quiz_question(american_question_object)
 
 
@@ -86,10 +86,9 @@ async def load_quiz():
 
 @app.post("/load_specific_quiz")
 async def load_specific_quiz(file_name: str = Form(...)):
-    print(file_name)
-    american_questions = load_american_questions_from_quiz(file_name)
-    print(american_questions)
-    return american_questions 
+    return load_american_questions_from_quiz(file_name)
 
 
-
+@app.delete("/delete_question_from_archive")
+async def delete_question_from_archive(file_name: str = Form(...), quiz_id: str = Form(...)):
+    return delete_question(file_name, quiz_id)

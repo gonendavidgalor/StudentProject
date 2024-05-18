@@ -1,13 +1,1 @@
-[
-    {
-        "id": 2,
-        "question": "Which method in JavaScript is used to map a value to a string when serializing it into JSON?",
-        "answers": [
-            "`JSON.encode(o)`",
-            "`JSON.valueToString(o)`",
-            "`JSON.stringify(o)`",
-            "`JSON.parse(o)`"
-        ],
-        "right_answer": 3
-    }
-]
+[]

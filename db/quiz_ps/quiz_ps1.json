@@ -9,5 +9,16 @@
             "Maps must contain a single data type as their values."
         ],
         "right_answer": 3
+    },
+    {
+        "id": 1,
+        "question": "Which of the following types of values can be encoded into a JSON string according to the content of the provided information?",
+        "answers": [
+            "String, Number, Boolean, Map, Array",
+            "String, Number, Boolean, Null, Function",
+            "String, Number, Boolean, Undefined, Function",
+            "String, Number, Boolean, Null, Array"
+        ],
+        "right_answer": 1
     }
 ]
