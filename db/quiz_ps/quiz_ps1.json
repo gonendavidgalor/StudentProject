@@ -1,24 +1,13 @@
 [
     {
-        "id": 1,
-        "question": "What is a distinguishing feature of the JavaScript compound type called Maps?",
+        "id": 5,
+        "question": "In JavaScript, which statement is true regarding JSON values and their encoding?",
         "answers": [
-            "Maps allow for the definition of homogenous compound values.",
-            "Maps can only be accessed using the keys 'a' and 'b'.",
-            "Maps can have keys that are strings and values that are of any data type.",
-            "Maps must contain a single data type as their values."
+            "JSON values cannot include objects with keys that are not strings.",
+            "JSON values can include functions but not undefined values.",
+            "JSON values must be either a string, number, boolean, null, a map with string keys, or an array of JSON values.",
+            "JSON values can include any type of JavaScript value except for Maps."
         ],
         "right_answer": 3
-    },
-    {
-        "id": 1,
-        "question": "Which of the following types of values can be encoded into a JSON string according to the content of the provided information?",
-        "answers": [
-            "String, Number, Boolean, Map, Array",
-            "String, Number, Boolean, Null, Function",
-            "String, Number, Boolean, Undefined, Function",
-            "String, Number, Boolean, Null, Array"
-        ],
-        "right_answer": 1
     }
 ]

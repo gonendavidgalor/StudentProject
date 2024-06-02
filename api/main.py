@@ -1,4 +1,3 @@
-import json
 from fastapi import FastAPI, File, Form, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from common.questions.load_quiz import list_quiz_files
@@ -12,6 +11,8 @@ from common.files.add_file_to_db import add_file
 from utils.shared_objects import AmericanQuestionObjectWithFileName
 from common.questions.add_quiz_question import save_quiz_question
 from common.questions.delete_question import delete_question
+import asyncio
+
 
 
 
@@ -33,10 +34,12 @@ app.add_middleware(
 
 # TODO: Should be the real one
 @app.post("/upload_file")
-# async def upload_file(file: UploadFile = File(...)):
-#     return await get_file_id(file)
 async def upload_file(file: UploadFile = File(...)):
-    return get_file_id()
+    # return await asyncio.run(get_file_id(file))
+    print(file)
+    return await get_file_id(file)
+# async def upload_file(file: UploadFile = File(...)):
+    # return get_file_id()
 
 @app.post("/generate_question")
 def generate_questions(file_id: str = Form(...), thread_id: Optional[str] = Form(None), assistant_id: Optional[str] = Form(None) ):
