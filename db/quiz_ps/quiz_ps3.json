@@ -1,0 +1,13 @@
+[
+    {
+        "id": 2,
+        "question": "What is the return value of the expression `(void? (addition 2 4))` in Scheme?",
+        "answers": [
+            "#t",
+            "#f",
+            "ok",
+            "No return value"
+        ],
+        "right_answer": 1
+    }
+]

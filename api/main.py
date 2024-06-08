@@ -36,7 +36,7 @@ app.add_middleware(
 @app.post("/upload_file")
 async def upload_file(file: UploadFile = File(...)):
     # return await asyncio.run(get_file_id(file))
-    print(file)
+    print("file", file)
     return await get_file_id(file)
 # async def upload_file(file: UploadFile = File(...)):
     # return get_file_id()
