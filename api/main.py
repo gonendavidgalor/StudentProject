@@ -46,26 +46,23 @@ def generate_questions(file_id: str = Form(...), thread_id: Optional[str] = Form
     print(file_id)
     return generate_a_question(file_id, thread_id, assistant_id)
 
-# @app.get("/generate_question")
-# def generate_questions():
-#     file_id = 'file-cvwILzT6xpvF5PiPoFr51Kck'
-#     return generate_a_question(file_id)
-
-
-# @app.post("/ask_question")
-# def ask_questions(file_id: str = Form(...), question: str = Form(...)):
-#     return ask_a_question(file_id, question)
 
 @app.post("/ask_question")
-def ask_questions(file_id: str = Form(...), question: str = Form(...), thread_id: Optional[str] = Form(None), assistant_id: Optional[str] = Form(None) ):
+def ask_questions(question: str = Form(...), thread_id: Optional[str] = Form(None), assistant_id: Optional[str] = Form(None) ):
+# def ask_questions(file_id: str = Form(...), question: str = Form(...), thread_id: Optional[str] = Form(None), assistant_id: Optional[str] = Form(None) ):
     print(thread_id, "thread_id5")
     print(assistant_id, "assistant_id5")
-    return ask_a_question(file_id, question, thread_id, assistant_id)
+    return ask_a_question(question, thread_id, assistant_id)
+    # return ask_a_question(file_id, question, thread_id, assistant_id)
 
 
 @app.post("/save_file")
-async def save_file(file: UploadFile = File(...)):
-    await add_file(file)
+async def save_file(file: UploadFile = File(...), file_id: str = Form(...)):
+    print("file", file)
+    print("")
+    print("")
+    print("file_id", file_id)
+    await add_file(file, file_id)
 
 
 # Try to make it look better
