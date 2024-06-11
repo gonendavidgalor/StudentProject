@@ -1,0 +1,24 @@
+[
+    {
+        "id": 2,
+        "question": "In TypeScript, what notation is used to describe map types?",
+        "answers": [
+            "Homogeneous arrays",
+            "Map type expressions",
+            "Named type expressions",
+            "Recursive types"
+        ],
+        "right_answer": 2
+    },
+    {
+        "id": 1,
+        "question": "What is the advantage of adding types to a program in TypeScript, according to the provided content?",
+        "answers": [
+            "To simplify the syntax of the code",
+            "To reduce the size of the compiled JavaScript output",
+            "To improve program performance",
+            "To detect errors earlier in the development cycle"
+        ],
+        "right_answer": 4
+    }
+]

@@ -1,5 +1,6 @@
 from fastapi import FastAPI, File, Form, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
+from common.questions.extract_file_id_by_file_name import extract_file_ids
 from common.questions.load_quiz import list_quiz_files
 from common.questions.load_specific_quiz import load_american_questions_from_quiz
 from common.files.upload_file import get_file_id
@@ -7,7 +8,7 @@ from common.files.load_files import load_content
 from common.questions.generate_questions import generate_a_question
 from common.questions.ask_questions import ask_a_question
 from typing import Optional
-from common.files.add_file_to_db import add_file
+from common.files.add_file_to_db import save_file_content_for_filename
 from utils.shared_objects import AmericanQuestionObjectWithFileName
 from common.questions.add_quiz_question import save_quiz_question
 from common.questions.delete_question import delete_question
@@ -26,43 +27,32 @@ app.add_middleware(
     allow_headers=["*"],  # Allows all headers
 )
 
-# Just basic for checking the UI
-# @app.get("/upload_file")
-# def upload_file():
-#     return get_file_id()
 
-
-# TODO: Should be the real one
 @app.post("/upload_file")
 async def upload_file(file: UploadFile = File(...)):
-    # return await asyncio.run(get_file_id(file))
     print("file", file)
     return await get_file_id(file)
-# async def upload_file(file: UploadFile = File(...)):
-    # return get_file_id()
 
 @app.post("/generate_question")
 def generate_questions(file_id: str = Form(...), thread_id: Optional[str] = Form(None), assistant_id: Optional[str] = Form(None) ):
     print(file_id)
     return generate_a_question(file_id, thread_id, assistant_id)
 
+@app.get("/filename_to_fileid")
+def generate_questions():
+    return extract_file_ids()
+
 
 @app.post("/ask_question")
-def ask_questions(question: str = Form(...), thread_id: Optional[str] = Form(None), assistant_id: Optional[str] = Form(None) ):
-# def ask_questions(file_id: str = Form(...), question: str = Form(...), thread_id: Optional[str] = Form(None), assistant_id: Optional[str] = Form(None) ):
+def ask_questions(file_id: str = Form(...), question: str = Form(...), thread_id: Optional[str] = Form(None), assistant_id: Optional[str] = Form(None) ):
     print(thread_id, "thread_id5")
     print(assistant_id, "assistant_id5")
-    return ask_a_question(question, thread_id, assistant_id)
-    # return ask_a_question(file_id, question, thread_id, assistant_id)
+    return ask_a_question(file_id, question)
 
 
 @app.post("/save_file")
 async def save_file(file: UploadFile = File(...), file_id: str = Form(...)):
-    print("file", file)
-    print("")
-    print("")
-    print("file_id", file_id)
-    await add_file(file, file_id)
+    await save_file_content_for_filename(file, file_id)
 
 
 # Try to make it look better

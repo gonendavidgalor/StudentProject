@@ -1,0 +1,13 @@
+[
+    {
+        "id": 3,
+        "question": "Which of the following defines JSON values that can be encoded into JSON strings according to the content of the document?",
+        "answers": [
+            "`string`, `number`, `boolean`, `null`, maps with string keys and JSON values as values, arrays with JSON values",
+            "`string`, `integer`, `boolean`, `undefined`, maps with number keys and string values, arrays with mixed data types",
+            "`int`, `float`, `boolean`, objects with unordered keys, arrays with integer values only",
+            "`string`, `boolean`, `null`, objects with string keys and arrays with nested arrays"
+        ],
+        "right_answer": 1
+    }
+]

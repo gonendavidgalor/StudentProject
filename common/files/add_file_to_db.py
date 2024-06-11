@@ -32,8 +32,9 @@ async def add_file_id_to_db(file, file_id):
     print("check3")
 
     save_file_id_details(file_id_details)
-
-async def add_file(file, file_id):
+    
+    
+async def save_file_content_for_filename(file, file_id):
     if file:
         if not is_file_exist(file.filename):
             await add_file_id_to_db(file, file_id)
