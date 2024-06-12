@@ -11,14 +11,25 @@
         "right_answer": 2
     },
     {
-        "id": 1,
-        "question": "What is the advantage of adding types to a program in TypeScript, according to the provided content?",
+        "id": 7,
+        "question": "What is the purpose of type annotations in TypeScript?",
         "answers": [
-            "To simplify the syntax of the code",
-            "To reduce the size of the compiled JavaScript output",
-            "To improve program performance",
-            "To detect errors earlier in the development cycle"
+            "They are used for the compiler to detect errors at compile time and serve as documentation for programmers.",
+            "They are used to specify the color scheme of the code for better readability.",
+            "They are solely for enhancing code aesthetics without any impact on functionality.",
+            "They are used to slow down the code execution for debugging purposes."
         ],
-        "right_answer": 4
+        "right_answer": 1
+    },
+    {
+        "id": 1,
+        "question": "Why is it preferable to define the `Tree` type without marking the `children` field as optional in the context of recursive type definitions?",
+        "answers": [
+            "It allows for more concise type representation and reduces the need for type assertions.",
+            "It leads to a non-ambiguous way of marking the base case and inductive case in the type definition.",
+            "It increases flexibility in defining the base case and inductive case with different types.",
+            "It simplifies the code by allowing for optional or non-optional child nodes interchangeably."
+        ],
+        "right_answer": 2
     }
 ]
