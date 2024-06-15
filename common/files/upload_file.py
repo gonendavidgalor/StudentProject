@@ -7,7 +7,6 @@ async def get_file_id(file):
     client = get_openai_client()
     file_stream = await file.read()
     file_id = create_file(client, file_stream, file.filename)
-    print(file_id)
 
     return file_id
 
@@ -17,4 +16,5 @@ def create_file(client, file_stream, file_name):
         file=(file_name, io.BytesIO(file_stream)),
         purpose='assistants'
     )
+    
     return file.id

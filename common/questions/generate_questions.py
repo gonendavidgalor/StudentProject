@@ -88,6 +88,7 @@ def generate_american_question(client, file_id, assistant, thread):
       thread_id, assistant_id = thread.id, assistant.id
       content = get_data_content(client, thread_id, assistant_id)
       question, answers, right_answer = get_message_data(content)
+      print("check1")
       return AmericanQuestionObject(question, answers, right_answer, assistant_id, thread_id)
       
     except Exception as e:
@@ -114,6 +115,7 @@ def generate_a_question(file_id, thread_id, assistant_id):
     client = get_openai_client()
     thread, assistant = make_infrustructure_for_questions(file_id, client)
     american_question = generate_american_question(client, file_id, assistant, thread)  
+    print("check2")
     
     # if thread_id == None or assistant_id == None:
     #   thread, assistant = make_infrustructure_for_questions(file_id, client)
