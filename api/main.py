@@ -12,7 +12,6 @@ from common.files.add_file_to_db import save_file_content_for_filename
 from utils.shared_objects import AmericanQuestionObjectWithFileName
 from common.questions.add_quiz_question import save_quiz_question
 from common.questions.delete_question import delete_question
-import asyncio
 
 
 
@@ -44,9 +43,7 @@ def generate_questions():
 
 
 @app.post("/ask_question")
-def ask_questions(file_id: str = Form(...), question: str = Form(...), thread_id: Optional[str] = Form(None), assistant_id: Optional[str] = Form(None) ):
-    print(thread_id, "thread_id5")
-    print(assistant_id, "assistant_id5")
+def ask_questions(question: str = Form(...), file_id: Optional[str] = Form(None), thread_id: Optional[str] = Form(None), assistant_id: Optional[str] = Form(None) ):
     return ask_a_question(file_id, question)
 
 

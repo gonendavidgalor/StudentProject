@@ -1,4 +1,6 @@
 from utils.shared_functions import get_openai_client
+from common.questions.extract_file_id_by_file_name import extract_file_ids
+
 
 NO_INFORMATION_SUPPLIED = "No information supplied in the file."
 
@@ -10,38 +12,39 @@ class AnswerObject():
 
 
 def get_thread(client, file_id):
-    print("check2")
-    thread = client.beta.threads.create(
-      messages=[
-        {
-          "role": "user",
-          "content": "based on a question asked I want to generate an answer from the information of the provided files, it can be just one of the files",
-          "attachments": [
+    if file_id == "0":
+      file_ids = list(extract_file_ids().values())
+      print(file_ids, "file_ids")
+      thread = client.beta.threads.create(
+        messages=[
           {
-            "file_id": file_id,
-            "tools": [{"type": "file_search"}]
-          } 
-         ]       
-        }
-      ]
-      
-    )
-    print("check22")
-
-    return thread
-
-def get_thread_for_files(client, file_ids):
-    thread = client.beta.threads.create(
-      messages=[
-        {
-          "role": "user",
-          "content": "Please use the information in the provided files to help me answer a question.",
-          "file_ids": file_ids
-        }
-      ]
-    )
-    print(thread, "thread")
-
+            "role": "user",
+            "content": "based on a question asked I want to generate an answer from the information of the provided files, it can be just one of the files",
+            "attachments": [
+            {
+              "file_id": file_id,
+              "tools": [{"type": "file_search"}]
+            } for file_id in file_ids
+          ]       
+          }
+        ]
+      )
+    else:
+      thread = client.beta.threads.create(
+        messages=[
+          {
+            "role": "user",
+            "content": "based on a question asked I want to generate an answer from the information of the provided files, it can be just one of the files",
+            "attachments": [
+              {
+                "file_id": file_id,
+                "tools": [{"type": "file_search"}]
+              }
+            ]       
+          }
+        ]
+      )
+       
     return thread
 
 
@@ -117,28 +120,21 @@ def generate_answer(client, thread_id, assistant_id, question):
 
 def make_infrustructure_for_questions(file_id, client, question):
     thread = get_thread(client, file_id)
-    print("check3")
-    assistant = client.beta.assistants.create(
+    assistant = get_assistant(client, question)
+    
+    return thread, assistant
+
+def get_assistant(client, question):
+  return client.beta.assistants.create(
     instructions=f"Based on the content of the uploaded files, answer the following question: {question}",
     model="gpt-3.5-turbo",
     tools=[{"type": "file_search"}],
-  #   tool_resources={
-  #   "file_search": {
-  #     "file_ids": [file_id]
-  #   }
-  # }
-    # file_ids=[file_id]
   )
     
-    print("check44")
-    
-    return thread, assistant
-    
 def ask_a_question(file_id, question):
+    print("file_id", file_id)
     client = get_openai_client()
-    print("check1")
     thread, assistant = make_infrustructure_for_questions(file_id, client, question)
-    print("check4")
     answer_object = generate_answer(client, thread.id, assistant.id, question)
   # def ask_a_question(question, thread_id, assistant_id):
     # client = get_openai_client()
