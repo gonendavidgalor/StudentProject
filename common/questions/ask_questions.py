@@ -48,18 +48,14 @@ def get_thread(client, file_id):
     return thread
 
 
-def get_data_content(client, thread_id, assistant_id, question):
-    
-    print("check12345")
+def get_data_content(client, thread_id, assistant_id, question):  
     run = client.beta.threads.runs.create_and_poll(
       thread_id=thread_id,
       assistant_id=assistant_id,
       instructions = f""" Based on the content of the uploaded file, answer this {question}. 
       Format the output as follows:
-        Based on the content of the uploaded file: ...
-
-      If you don't find the answer in the file, type "No information supplied in the file."
-
+        If you find the answer in the specific file type: Based on the content of the uploaded file: ...
+        If you don't find the answer in the file, type "No information supplied in the file."
         If you see steps, for example 1. 2. 3. etc, before each one of the steps should be for having a linegap
       
       don't add any other information in the output
@@ -79,7 +75,7 @@ def get_data_content(client, thread_id, assistant_id, question):
 def generate_fallback_answer(client, question):
   print("check7")
   completion = client.chat.completions.create(
-    model="gpt-3.5-turbo",
+    model="gpt-4-turbo",
     messages=[
       {"role": "system", "content": f"""Answer the following question: {question}. start with the following: 
         'Based on the chatGPT engine:...'"""}
@@ -112,7 +108,7 @@ def generate_answer(client, thread_id, assistant_id, question):
     else:
       fallback_content = generate_fallback_answer(client, question)
       return AnswerObject(fallback_content, thread_id=thread_id, assistant_id=assistant_id)
-    
+  
   except Exception as e:
     fallback_content = generate_fallback_answer(client, question)
     return AnswerObject(fallback_content, thread_id=thread_id, assistant_id=assistant_id)
@@ -126,8 +122,8 @@ def make_infrustructure_for_questions(file_id, client, question):
 
 def get_assistant(client, question):
   return client.beta.assistants.create(
-    instructions=f"Based on the content of the uploaded files, answer the following question: {question}",
-    model="gpt-3.5-turbo",
+    instructions=f"Based on the content of the uploaded files, answer the following question: {question}.",
+    model="gpt-4-turbo",
     tools=[{"type": "file_search"}],
   )
     

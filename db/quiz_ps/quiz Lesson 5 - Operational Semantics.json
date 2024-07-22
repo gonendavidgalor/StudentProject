@@ -1,0 +1,13 @@
+[
+    {
+        "id": 3,
+        "question": "What is a key distinction between the evaluation strategies applicative-eval and normal-eval in Scheme programming as discussed in the file?",
+        "answers": [
+            "Normal eval always results in an infinite loop while applicative eval returns the final value immediately.",
+            "Applicative eval method substitutes variables with their immediate values before proceeding, while normal eval delays the substitution until necessary.",
+            "Normal eval handles recursion more efficiently compared to applicative eval in Scheme programming.",
+            "Applicative eval prioritizes division by zero error handling, while normal eval does not focus on such error cases."
+        ],
+        "right_answer": 2
+    }
+]

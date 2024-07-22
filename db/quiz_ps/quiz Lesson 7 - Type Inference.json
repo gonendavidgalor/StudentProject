@@ -1,0 +1,24 @@
+[
+    {
+        "id": 1,
+        "question": "In the process of type inference using type constraints, what is the purpose of renaming bound variables as one of the initial steps?",
+        "answers": [
+            "To simplify the subsequent steps by avoiding confusion with variable names.",
+            "To assign specific types directly to the variables.",
+            "To reduce the number of equations to be solved in later stages.",
+            "To ensure that the variables have unique identifiers for type assignments."
+        ],
+        "right_answer": 1
+    },
+    {
+        "id": 2,
+        "question": "In the type inference example provided, what is the inferred type of the expression after successfully solving the type equations?",
+        "answers": [
+            "String",
+            "Boolean",
+            "Number",
+            "Function"
+        ],
+        "right_answer": 3
+    }
+]

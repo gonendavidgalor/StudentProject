@@ -10,7 +10,10 @@ class QuizQuestion(BaseModel):
     right_answer: int
 
 def load_american_questions_from_quiz(file_name):
+    print(file_name)
     try:
+        # full_file_name = file_name.replace(' ', '_')
+        print(file_name)
         file_json_path = f'db/quiz_ps/{file_name}.json'
         with open(file_json_path, 'r') as file:
             quiz_data = json.load(file)

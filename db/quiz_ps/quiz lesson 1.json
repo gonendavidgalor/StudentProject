@@ -1,0 +1,35 @@
+[
+    {
+        "id": 6,
+        "question": "When implementing the `some` and `every` methods using `map` and `reduce`, which function can be used to flatten the result of 'doing something' by one level?",
+        "answers": [
+            "`push`",
+            "`concat`",
+            "`filter`",
+            "`reduce`"
+        ],
+        "right_answer": 2
+    },
+    {
+        "id": 2,
+        "question": "In JavaScript, which method can be used to concatenate arrays without mutating the original arrays?",
+        "answers": [
+            "push-ups",
+            "reduce()",
+            "map()",
+            "concat()"
+        ],
+        "right_answer": 4
+    },
+    {
+        "id": 1,
+        "question": "According to the file, what function in the Ramda package can be used to flatten an array of arrays by one level?",
+        "answers": [
+            "chain",
+            "map",
+            "filter",
+            "reduce"
+        ],
+        "right_answer": 1
+    }
+]

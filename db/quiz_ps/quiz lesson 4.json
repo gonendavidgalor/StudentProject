@@ -1,0 +1,24 @@
+[
+    {
+        "id": 1,
+        "question": "In Scheme, what is the purpose of the environment model in the evaluation process of expressions?",
+        "answers": [
+            "It eagerly substitutes variables with their values during closure application.",
+            "It maintains an environment data structure alongside the closure body without immediate substitution.",
+            "It skips evaluating closures for optimization purposes.",
+            "It eliminates the need for lexical scoping rules in the programming language."
+        ],
+        "right_answer": 2
+    },
+    {
+        "id": 2,
+        "question": "In Scheme, what is the purpose of the box data type in the box environment model?",
+        "answers": [
+            "To represent mutable variables and enable mutation in the language\u30104:3\u2020source\u3011.",
+            "To model global variables and mutual recursive procedures in a special way.",
+            "To create closures with nested environments for lexical scoping.",
+            "To implement message dispatch functionality in closures."
+        ],
+        "right_answer": 1
+    }
+]

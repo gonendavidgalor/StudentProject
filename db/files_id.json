@@ -4,19 +4,31 @@
         "file_id": "0"
     },
     {
-        "name": "ps1.md",
+        "name": "Lesson 1 - TypeScript",
         "file_id": "file-mIcnHl7mlv7cvjF6Vmept0dd"
     },
     {
-        "name": "ps2.md",
+        "name": "Lesson 2 - Type Checking",
         "file_id": "file-YkJgBZ1BmcqlNUAGfJXc8KxO"
     },
     {
-        "name": "ps3.md",
+        "name": "Lesson 3 - Scheme",
         "file_id": "file-gVOPDStfWaHxipU2MyQn4uGd"
     },
     {
-        "name": "ps4.md",
+        "name": "Lesson 4 - Concrete and Abstract Syntax",
         "file_id": "file-WFPzbcMwQzfVV01nfgjhaJuA"
+    },
+    {
+        "name": "Lesson 5 - Operational Semantics",
+        "file_id": "file-10f382PZNzAT7DWorpDxOQkE"
+    },
+    {
+        "name": "Lesson 6 - Environment Model",
+        "file_id": "file-CZUj8o0LHI3vV3MsWUPujsuc"
+    },
+    {
+        "name": "Lesson 7 - Type Inference.md",
+        "file_id": "file-U65QCuqN4AGCKOd9YYz8TkM9"
     }
 ]

@@ -16,7 +16,7 @@ def save_quiz_question(american_question_object):
     else:
         file_base_name = american_question_object.file_name
 
-    file_json_path = f'db/quiz_ps/quiz_{file_base_name}.json'
+    file_json_path = f'db/quiz_ps/quiz {file_base_name}.json'
 
     try:
         with open(file_json_path, 'r') as file:
